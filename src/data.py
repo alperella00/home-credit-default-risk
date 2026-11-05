@@ -9,21 +9,26 @@ RAW = ROOT / "data" / "raw"
 
 
 def shrink(df: pd.DataFrame) -> pd.DataFrame:
-    """Downcast dtypes in place: float64 -> float32, ints -> smallest int,
+    """Downcast dtypes: float64 -> float32, ints -> smallest int,
     text -> category. Cuts memory by ~67% on this dataset (4.2 GB -> 1.4 GB).
 
     float32 keeps ~7 significant digits: fine for modelling, but amounts in the
     millions lose sub-unit precision. ID columns are ints, so joins stay exact.
     """
+    # Decide every column's target dtype first, then convert in a single astype():
+    # assigning columns one by one leaves the frame fragmented in memory.
+    target = {}
     for col in df.columns:
         s = df[col]
         if pd.api.types.is_float_dtype(s):
-            df[col] = s.astype(np.float32)
+            target[col] = np.float32
         elif pd.api.types.is_integer_dtype(s):
-            df[col] = pd.to_numeric(s, downcast="integer")
+            lo, hi = s.min(), s.max()
+            target[col] = next(t for t in (np.int8, np.int16, np.int32, np.int64)
+                               if np.iinfo(t).min <= lo and hi <= np.iinfo(t).max)
         elif s.dtype == object or pd.api.types.is_string_dtype(s):
-            df[col] = s.astype("category")
-    return df
+            target[col] = "category"
+    return df.astype(target)
 
 
 def load(name: str, usecols: list[str] | None = None) -> pd.DataFrame:
