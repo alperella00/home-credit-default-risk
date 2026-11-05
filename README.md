@@ -34,6 +34,8 @@ The point of this project is not leaderboard rank. It's to understand **why diff
 | Random Forest | 0.7452 ± 0.006 | 0.2255 | 0.0693 | 0.2528 |
 | *Constant 8.07% (no model)* | *0.5* | *0.081* | *0.0742* | *0.2805* |
 
+Kaggle (LightGBM baseline): **0.7451 private** / 0.7443 public, about 0.013 below CV. Under investigation (train/test distribution shift?).
+
 ![Baseline ROC-AUC per fold](reports/figures/baseline_auc.png)
 
 ### Stage 2 · With history tables *(to do)*
