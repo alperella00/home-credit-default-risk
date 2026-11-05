@@ -32,7 +32,7 @@ The point of this project is not leaderboard rank. It's to understand **why diff
 | Logistic Regression (median + missing flags) | 0.7486 ± 0.005 | 0.2274 | 0.0685 | 0.2491 |
 | Logistic Regression (median) | 0.7465 ± 0.005 | 0.2227 | 0.0687 | 0.2499 |
 | Random Forest | 0.7452 ± 0.006 | 0.2255 | 0.0693 | 0.2528 |
-| *Constant 8.07% (no model)* | *0.5* | *0.081* | *0.0742* | *0.2804* |
+| *Constant 8.07% (no model)* | *0.5* | *0.081* | *0.0742* | *0.2805* |
 
 ![Baseline ROC-AUC per fold](reports/figures/baseline_auc.png)
 
