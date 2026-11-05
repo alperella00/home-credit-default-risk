@@ -28,7 +28,7 @@ def shrink(df: pd.DataFrame) -> pd.DataFrame:
                                if np.iinfo(t).min <= lo and hi <= np.iinfo(t).max)
         elif s.dtype == object or pd.api.types.is_string_dtype(s):
             target[col] = "category"
-    return df.astype(target)
+    return df.astype(target).copy()  # copy() consolidates same-dtype columns into one block
 
 
 def load(name: str, usecols: list[str] | None = None) -> pd.DataFrame:
