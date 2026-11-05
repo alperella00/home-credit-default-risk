@@ -23,6 +23,21 @@ The point of this project is not leaderboard rank. It's to understand **why diff
 ## Results
 *Same CV folds, same metric for every model.*
 
+### Stage 1 · Baseline: application table only, no tuning
+5-fold stratified CV on 307,511 applications ([notebook](notebooks/02_baseline.ipynb)). Lower is better for Brier and LogLoss.
+
+| Model | ROC-AUC | PR-AUC | Brier | LogLoss |
+|-------|--------:|-------:|------:|--------:|
+| **LightGBM** | **0.7585** ± 0.005 | **0.2432** | **0.0679** | **0.2461** |
+| Logistic Regression (median + missing flags) | 0.7486 ± 0.005 | 0.2274 | 0.0685 | 0.2491 |
+| Logistic Regression (median) | 0.7465 ± 0.005 | 0.2227 | 0.0687 | 0.2499 |
+| Random Forest | 0.7452 ± 0.006 | 0.2255 | 0.0693 | 0.2528 |
+| *Constant 8.07% (no model)* | *0.5* | *0.081* | *0.0742* | *0.2804* |
+
+![Baseline ROC-AUC per fold](reports/figures/baseline_auc.png)
+
+### Stage 2 · With history tables *(to do)*
+
 | Model | CV ROC-AUC | CV PR-AUC | Brier | Kaggle (private) |
 |-------|-----------:|----------:|------:|-----------------:|
 | Logistic Regression | | | | |
