@@ -1,0 +1,30 @@
+# Kaggle verisi yeniden paylaşılamaz -> README'deki komutla indirilir
+data/
+*.zip
+
+# Kaggle API anahtarı: ASLA commit'lenmez
+kaggle.json
+.kaggle/
+
+# Model dosyaları ve submission'lar
+models/
+submissions/
+*.pkl
+*.joblib
+*.lgb
+*.txt.model
+submission*.csv
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Sistem
+.DS_Store
+.env
+
+# Kişisel Türkçe çalışma notları (repoya girmez)
+CLAUDE.md
+docs/
